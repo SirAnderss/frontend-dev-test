@@ -1,0 +1,98 @@
+.product-unkown {
+  color: #aaa;
+  font-weight: 400;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 0;
+}
+
+.product-container {
+  position: relative;
+  width: 100%;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.product-amount {
+  position: absolute;
+  left: 24px;
+  top: -4px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #a51bb9;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 0;
+  border-radius: 50%;
+}
+
+.product-image {
+  max-width: 300px;
+  max-height: 500px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin-bottom: 16px;
+}
+
+.product-detail {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  height: 8px;
+}
+
+.product-info {
+  display: inherit;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.product-info > p:first-child {
+  max-width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.product-info > p:nth-child(2) {
+  color: #ccc;
+}
+
+.product-info > p:last-child {
+  color: #a51bb9;
+}
+
+.product-buttons {
+  display: inherit;
+  gap: 6px;
+}
+
+.product-buttons > button {
+  cursor: pointer;
+  border-color: transparent;
+}
+
+.product-buttons > button:first-child {
+  background-color: #ccc;
+}
+
+.product-buttons > button:last-child {
+  background-color: #a51bb9;
+  color: #fff;
+}
+
+.product-description {
+  width: 100%;
+  padding: 8px 0;
+  color: #555;
+  border-top: 2px solid #ccc;
+  border-bottom: 2px solid #ccc;
+}

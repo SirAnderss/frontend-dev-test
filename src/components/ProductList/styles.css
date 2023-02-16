@@ -1,0 +1,28 @@
+.products-container {
+  gap: 12px;
+  padding: 8px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(84, 12vw);
+}
+
+.products-container > h1 {
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.2px;
+  font-weight: 600;
+  color: #aaa;
+}
+
+@media only screen and (min-width: 768px) {
+  .products-container {
+    padding: 0;
+    width: 100%;
+    max-width: 768px;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(14, 5vw);
+  }
+}

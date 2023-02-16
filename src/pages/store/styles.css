@@ -1,0 +1,19 @@
+.store-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.store-container > div:first-of-type {
+  order: 1;
+}
+
+@media only screen and (min-width: 768px) {
+  .store-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .store-container > div:first-of-type {
+    order: 0;
+  }
+}

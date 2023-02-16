@@ -1,0 +1,51 @@
+.checkout-container {
+  display: grid;
+  justify-items: center;
+  gap: 24px;
+}
+
+.checkout-container h1 {
+  font-size: 24px;
+  color: #a51bb9;
+}
+
+.checkout-container > table {
+  max-width: 320px;
+  font-size: 14px;
+  border-spacing: 0;
+}
+
+.checkout-container tr:nth-child(even) {
+  background-color: #a41bb991;
+  color: #fff;
+}
+
+.checkout-container th {
+  font-weight: 600;
+  padding: 8px 12px;
+}
+
+.checkout-container th:nth-child(even) {
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.retry {
+  text-align: center;
+}
+
+.retry > p {
+  margin-top: -2px;
+  margin-bottom: 16px;
+  font-size: 12px;
+}
+
+.btn-checkout {
+  width: 100px;
+}
+
+@media only screen and (min-width: 768px) {
+  .checkout-container > table {
+    max-width: 480px;
+  }
+}

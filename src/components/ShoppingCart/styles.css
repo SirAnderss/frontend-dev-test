@@ -1,0 +1,25 @@
+.cartlist-container {
+  gap: 8px;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.cartlist-container > h1,
+.cart-total {
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.2px;
+  font-weight: 600;
+  color: #aaa;
+}
+
+.cart-total {
+  text-align: right;
+}
+
+.cart-total > strong {
+  color: #a51bb9;
+}
