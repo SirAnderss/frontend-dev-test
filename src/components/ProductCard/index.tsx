@@ -14,7 +14,11 @@ export default function ProductDetails({ product, idx }: IProductDetailProps) {
   const { product: currentProduct } = useProductDetail();
 
   return (
-    <Link to={`/store/${product.id}`} className={`card-image-${idx}`}>
+    <Link
+      to={`/store/${product.id}`}
+      className={`card-image-${idx}`}
+      data-testid='product-card'
+    >
       <img
         src={product.image}
         alt={product.name}

@@ -2,7 +2,6 @@ import { setCartProduct } from '@src/redux/cart';
 import { currencyFormat } from '@src/utils/currencyFormat';
 import { renderWithProviders } from '@src/utils/test-utils';
 import { act, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import CartProduct from '.';
 
@@ -61,7 +60,7 @@ describe(CartProduct, () => {
   });
 
   test('Add button can update cart product', async () => {
-    const { getByTestId, store } = renderWithProviders(
+    const { getByTestId, store, user } = renderWithProviders(
       <CartProduct product={product} />
     );
 
@@ -76,7 +75,7 @@ describe(CartProduct, () => {
 
     const addButton = getByTestId('cart-add');
 
-    await userEvent.click(addButton);
+    await user.click(addButton);
 
     const updatedProduct = store
       .getState()
@@ -88,7 +87,7 @@ describe(CartProduct, () => {
   test('Remove button if amount is major to 1 can update cart product', async () => {
     const productToTest = { ...product, amount: 2 };
 
-    const { getByTestId, store } = renderWithProviders(
+    const { getByTestId, store, user } = renderWithProviders(
       <CartProduct product={productToTest} />
     );
 
@@ -110,7 +109,7 @@ describe(CartProduct, () => {
 
     const removeButton = getByTestId('cart-remove');
 
-    await userEvent.click(removeButton);
+    await user.click(removeButton);
 
     const updatedProduct = store
       .getState()
@@ -120,7 +119,7 @@ describe(CartProduct, () => {
   });
 
   test('Remove button if amount is equal to 1 remove product from cart', async () => {
-    const { getByTestId, store } = renderWithProviders(
+    const { getByTestId, store, user } = renderWithProviders(
       <CartProduct product={product} />
     );
 
@@ -135,7 +134,7 @@ describe(CartProduct, () => {
 
     const removeButton = getByTestId('cart-remove');
 
-    await userEvent.click(removeButton);
+    await user.click(removeButton);
 
     const updatedProduct = store
       .getState()

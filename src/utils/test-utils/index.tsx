@@ -1,27 +1,23 @@
 import { render } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, MemoryRouter } from 'react-router-dom';
 
-import { applyMiddleware, createStore } from 'redux';
+import { AnyAction, applyMiddleware, createStore, Store } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import rootReducer, { RootState } from '@src/redux/reducer';
+import rootReducer from '@src/redux/reducer';
 import sagas from '@src/redux/sagas';
 import { Provider } from 'react-redux';
+import userEvent from '@testing-library/user-event';
 
-export const initialMockState: RootState = {
-  app: {
-    isLoading: false,
-  },
-  products: {
-    product: undefined,
-    products: [],
-  },
-  cart: {
-    products: [],
-    total: 0,
-    cartId: '',
-    transationStatus: undefined,
-  },
-};
+export function getStoreWrapper(
+  store: Store<any, AnyAction>,
+  route?: string
+): React.FC {
+  return ({ children }: { children?: React.ReactNode }) => (
+    <MemoryRouter initialEntries={route ? [route] : undefined}>
+      <Provider store={store}>{children}</Provider>
+    </MemoryRouter>
+  );
+}
 
 export function renderWithStore(ui: React.ReactElement) {
   const sagaMiddlare = createSagaMiddleware();
@@ -32,8 +28,9 @@ export function renderWithStore(ui: React.ReactElement) {
   sagaMiddlare.run(sagas);
 
   return {
-    ...render(<Provider store={store}>{ui}</Provider>),
+    user: userEvent.setup(),
     store,
+    ...render(<Provider store={store}>{ui}</Provider>),
   };
 }
 
@@ -51,6 +48,7 @@ export function renderWithProviders(
   sagaMiddlare.run(sagas);
 
   return {
+    user: userEvent.setup(),
     ...render(<Provider store={store}>{ui}</Provider>, {
       wrapper: BrowserRouter,
     }),

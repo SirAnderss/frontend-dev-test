@@ -1,12 +1,13 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { clearShoppingCart, getTransaction, setCartId } from '@src/redux/cart';
 import { RootState } from '@src/redux/reducer';
 
 export default function useCheckoutDetail() {
   const { search } = useLocation();
+  const navigate = useNavigate();
 
   // Get transaction data from store
   const transaction = useSelector(
@@ -22,7 +23,7 @@ export default function useCheckoutDetail() {
     appDispatch(setCartId(uid));
   };
 
-  // Effect to get transaction data
+  // Effect to get transaction data or redirect if param is empty
   useEffect(() => {
     const getTransactionData = async () => {
       if (search.length) {
@@ -33,6 +34,8 @@ export default function useCheckoutDetail() {
 
           appDispatch(getTransaction({ id: transactionId }));
         }
+      } else {
+        navigate('/store');
       }
     };
 

@@ -13,7 +13,7 @@ export default function ProductDetail() {
   }
 
   return (
-    <div className='product-container'>
+    <div className='product-container' data-testid='product-detail'>
       {amount ? <p className='product-amount'>{amount}</p> : null}
       <img src={product.image} alt={product.name} className='product-image' />
       <div className='product-detail'>

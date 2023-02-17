@@ -1,7 +1,14 @@
 import { FetchResponse } from '@src/api';
-import { WOMPI_API, WOMPI_KEY } from '@src/config';
+import { ENVIROIMENT, WOMPI_API, WOMPI_KEY } from '@src/config';
 
 export async function getTransactionInfo(id: string) {
+  if (ENVIROIMENT === 'test') {
+    return {
+      ok: true,
+      data: {},
+    };
+  }
+
   const headers = new Headers();
 
   headers.append('Content-Type', 'application/json');

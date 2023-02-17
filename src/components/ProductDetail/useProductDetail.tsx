@@ -11,9 +11,10 @@ export default function useProductDetail() {
   const { productId } = useParams();
 
   // get selectec product based on url param
-  const product = useSelector((state: RootState) =>
-    state.products.products.find(p => p.id === productId)
-  );
+  const product = useSelector((state: RootState) => {
+    console.log(productId);
+    return state.products.products.find(p => p.id === productId);
+  });
 
   // get the amount of current product if exists in shopping cart
   const amount = useSelector(

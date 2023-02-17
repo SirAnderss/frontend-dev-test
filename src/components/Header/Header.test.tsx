@@ -2,13 +2,12 @@ import { setCartProduct } from '@src/redux/cart';
 import { currencyFormat } from '@src/utils/currencyFormat';
 import { renderWithProviders } from '@src/utils/test-utils';
 import { act, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import Header from '.';
 
 describe(Header, () => {
   test('header can render correctly', async () => {
-    const { getByTestId } = renderWithProviders(<Header />);
+    const { getByTestId, user } = renderWithProviders(<Header />);
 
     const headerElement = getByTestId('main-header');
 
@@ -16,19 +15,19 @@ describe(Header, () => {
   });
 
   test('header logo link should show white space in screen', async () => {
-    const { getByTestId } = renderWithProviders(<Header />);
+    const { getByTestId, user } = renderWithProviders(<Header />);
 
     const logoLink = getByTestId('logo-link');
 
-    await userEvent.click(logoLink);
+    await user.click(logoLink);
     expect(document.URL.includes('/store')).toBeTruthy();
   });
 
   test('header cart link show shopping cart text in screen', async () => {
-    const { getByTestId } = renderWithProviders(<Header />);
+    const { getByTestId, user } = renderWithProviders(<Header />);
     const cartLink = getByTestId('cart-link');
 
-    await userEvent.click(cartLink);
+    await user.click(cartLink);
     expect(document.URL.includes('/cart')).toBeTruthy();
   });
 
@@ -89,10 +88,12 @@ describe(Header, () => {
   });
 
   test('header close cart link does not show shopping cart text in screen', async () => {
-    const { getByTestId } = renderWithProviders(<Header />, { route: '/cart' });
+    const { getByTestId, user } = renderWithProviders(<Header />, {
+      route: '/cart',
+    });
     const closeButton = getByTestId('close-link');
 
-    await userEvent.click(closeButton);
+    await user.click(closeButton);
     expect(document.URL.includes('/store')).toBeTruthy();
   });
 });

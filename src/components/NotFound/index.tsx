@@ -4,7 +4,7 @@ import './styles.css';
 
 export default function NotFound() {
   return (
-    <div className='main'>
+    <div className='main' data-testid='404-container'>
       <svg
         xmlns='http://www.w3.org/2000/svg'
         xmlnsXlink='http://www.w3.org/1999/xlink'
@@ -125,7 +125,7 @@ export default function NotFound() {
         </g>
       </svg>
 
-      <Link to='/' className='back-button'>
+      <Link to='/' className='back-button' data-testid='404-back'>
         Go Home
       </Link>
     </div>

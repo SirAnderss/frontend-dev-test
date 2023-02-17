@@ -82,11 +82,11 @@ export function makeServer({ environment = 'development' } = {}) {
 
     models: {
       product: Model,
-      transaction: Model,
+      // transaction: Model,
     },
 
     routes() {
-      // this.passthrough('https://sandbox.wompi.co/v1/**');
+      this.passthrough('https://sandbox.wompi.co/v1/**');
       this.namespace = 'api';
 
       this.get('/products', (schema, _) => {
@@ -94,28 +94,28 @@ export function makeServer({ environment = 'development' } = {}) {
         return schema.products.all();
       });
 
-      this.get('/transactions/:id', (schema, request) => {
-        let id = request.params.id;
+      // this.get('/transactions/:id', (schema, request) => {
+      //   let id = request.params.id;
 
-        if (id) {
-          // @ts-ignore
-          return schema.movies.first(id);
-        }
-      });
+      //   if (id) {
+      //     // @ts-ignore
+      //     return schema.movies.first(id);
+      //   }
+      // });
     },
 
     seeds(server) {
-      server.create('transaction', {
-        // @ts-ignore
-        data: {
-          id: faker.random.alphaNumeric(),
-          reference: faker.random.alphaNumeric(),
-          status: faker.helpers.arrayElement(['APPROVED', 'REJECTED']),
-          payment_method_type: faker.finance.creditCardIssuer(),
-          currency: faker.finance.currencyCode(),
-          amount_in_cents: faker.datatype.number({ min: 1000000 }),
-        },
-      });
+      // server.create('transaction', {
+      //   // @ts-ignore
+      //   data: {
+      //     id: 'transaction-ref-id',
+      //     reference: faker.random.alphaNumeric(),
+      //     status: 'APPROVED',
+      //     payment_method_type: faker.finance.creditCardIssuer(),
+      //     currency: faker.finance.currencyCode(),
+      //     amount_in_cents: faker.datatype.number({ min: 1000000 }),
+      //   },
+      // });
 
       products.forEach(product => {
         server.create('product', {
